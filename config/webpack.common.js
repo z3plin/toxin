@@ -3,11 +3,15 @@ const path = require('path')
 const fs = require('fs')
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const copyWebpackPlugin = require('copy-webpack-plugin')
+const htmlWebpackPlugin = require('html-webpack-plugin')
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 
-const PAGES_DIR = `${paths.src}/views/`
-const PAGES = fs.readdirSync(PAGES_DIR).filter(fileName => fileName.endsWith('.pug'))
+const pages_dir = `${paths.src}/views/pages/`
+// const pages = fs.readdirSync(pages_dir).filter(fileName => fileName.endsWith('.pug'))
+const pages = fs
+    .readdirSync(path.resolve(__dirname, '../src/views/pages/'))
+    .filter(filename => filename.endsWith('.pug'))
 
 module.exports = {
     entry: [paths.src + '/js/index.js'],
@@ -21,7 +25,9 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
 
-        new CopyWebpackPlugin({
+        new CaseSensitivePathsPlugin(),
+
+        new copyWebpackPlugin({
             patterns: [
                 {
                     from: paths.public,
@@ -29,17 +35,28 @@ module.exports = {
                     globOptions: {
                         ignore: ['*.DS_Store'],
                     },
+                    force: true
                 },
             ],
         }),
 
-        new HtmlWebpackPlugin({
+        new htmlWebpackPlugin({
             favicon: paths.src + '/images/favicon/favicon.png',
         }),
 
-        ...PAGES.map(page => new HtmlWebpackPlugin({
-            template: `${PAGES_DIR}/pages/${page}`,
-            filename: `./${page.replace(/\.pug/, '.html')}`
+        // new htmlWebpackPlugin({
+        //     template: pages_dir + 'index.pug',
+        //     filename: "index.html"
+        // }),
+
+        // ...pages.map(page => new htmlWebpackPlugin({
+        //     template: `${pages_dir}/${page}`,
+        //     filename: `./${page.replace(/\.pug/, '.html')}`
+        // })),
+
+        ...pages.map(page => new htmlWebpackPlugin({
+            template: page,
+            filename: page.replace(/\.pug/, '.html')
         }))
     ],
 
@@ -64,7 +81,7 @@ module.exports = {
                 loader: 'pug-loader'
             },
             {
-                test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+                test: /\.(?:ico|gif|png|jpg|jpeg|svg)$/i,
                 type: 'asset/resource'
             },
             {
