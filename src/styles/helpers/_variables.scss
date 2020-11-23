@@ -1,0 +1,24 @@
+// Colors
+$darkShade-100: #1f2041;
+$darkShade-75: rgba(#1f2041, 0.75);
+$darkShade-50: rgba(#1f2041, 0.50);
+$darkShade-25: rgba(#1f2041, 0.25);
+$darkShade-5: rgba(#1f2041, 0.05);
+$purple: #bc0cff;
+$green: #6fcf97;
+$white: #ffffff;
+
+// Sizes
+$size-h1: rem(24);
+$size-h2: rem(19);
+$size-h3: rem(12);
+$size-text: rem(14);
+$size-font: rem(16);
+
+// Setup variables
+$maxWidth: rem(1440);
+
+// Variables that rarely change or some frequent properties ------------
+$spacing: 0.1rem;
+$radius: rem(4);
+$transition: all 0.3s ease-in-out;
