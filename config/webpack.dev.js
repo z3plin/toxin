@@ -17,7 +17,7 @@ const devConfig = {
         },
         open: true,
         compress: true,
-        hot: true,
+        // hot: true,
         port: 9000
     },
 
