@@ -55,8 +55,8 @@ module.exports = {
         // })),
 
         ...pages.map(page => new htmlWebpackPlugin({
-            template: page,
-            filename: page.replace(/\.pug/, '.html')
+            template: path.resolve(__dirname, pages_dir + page),
+            filename: page.replace(/\.pug$/, '.html')
         }))
     ],
 
