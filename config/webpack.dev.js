@@ -1,19 +1,15 @@
-const paths = require('./paths')
-const path = require('path')
-
-const webpack = require('webpack')
 const { merge } = require('webpack-merge')
 const common = require('./webpack.common.js')
+const webpack = require('webpack')
 
-module.exports = merge(common, {
+const devConfig = {
     mode: 'development',
 
     devtool: 'inline-source-map',
 
     devServer: {
         historyApiFallback: true,
-        // contentBase: paths.build,
-        contentBase: path.resolve(__dirname, '../src'),
+        contentBase: common.externals.paths.build,
         watchContentBase: true,
         overlay: {
             warnings: true,
@@ -22,11 +18,16 @@ module.exports = merge(common, {
         open: true,
         compress: true,
         hot: true,
-        port: 9000,
+        port: 9000
     },
 
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-    ],
-})
+        new webpack.HotModuleReplacementPlugin()
+    ]
+}
 
+const config = merge(common, devConfig)
+
+module.exports = () => {
+    return config
+}

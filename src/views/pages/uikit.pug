@@ -2,10 +2,11 @@ extends ../layouts/default
 include ../helpers/mixins
 
     block variables
-         - const title = "Toxin"
+        - const title = "Toxin UIkit";
 
     block content
-        h1 Let's go
+        include ../../blocks/modules/uikit/uikit
 
     block scripts
+        //script(src="js/pageB.js")
         script(src="js/vendor.js")

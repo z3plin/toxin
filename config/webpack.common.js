@@ -1,36 +1,37 @@
-const paths = require('./paths')
 const path = require('path')
-const fs = require('fs')
-
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const copyWebpackPlugin = require('copy-webpack-plugin')
-const htmlWebpackPlugin = require('html-webpack-plugin')
-const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const htmlPlugins = require('./utils/htmlPlugins')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const pages_dir = `${paths.src}/views/pages/`
-// const pages = fs.readdirSync(pages_dir).filter(fileName => fileName.endsWith('.pug'))
-const pages = fs
-    .readdirSync(path.resolve(__dirname, '../src/views/pages/'))
-    .filter(filename => filename.endsWith('.pug'))
+const PATHS = {
+    src: path.resolve(__dirname, '../src'),
+    build: path.resolve(__dirname, '../dist'),
+    public: path.resolve(__dirname, '../public')
+}
 
 module.exports = {
-    entry: [paths.src + '/js/index.js'],
+    externals: {
+        paths: PATHS
+    },
+
+    entry: {
+        main: `${PATHS.src}/js/index.js`
+    },
 
     output: {
-        path: paths.build,
-        filename: '[name].bundle.js',
+        path: PATHS.build,
+        filename: '[name].js',
         publicPath: '/'
     },
 
     plugins: [
         new CleanWebpackPlugin(),
-
-        new CaseSensitivePathsPlugin(),
-
-        new copyWebpackPlugin({
+        new CopyWebpackPlugin({
             patterns: [
                 {
-                    from: paths.public,
+                    from: PATHS.public,
                     to: '../dist/assets',
                     globOptions: {
                         ignore: ['*.DS_Store'],
@@ -39,25 +40,13 @@ module.exports = {
                 },
             ],
         }),
-
-        new htmlWebpackPlugin({
-            favicon: paths.src + '/images/favicon/favicon.png',
+        new MiniCssExtractPlugin({
+            filename: '[name].css'
         }),
-
-        // new htmlWebpackPlugin({
-        //     template: pages_dir + 'index.pug',
-        //     filename: "index.html"
-        // }),
-
-        // ...pages.map(page => new htmlWebpackPlugin({
-        //     template: `${pages_dir}/${page}`,
-        //     filename: `./${page.replace(/\.pug/, '.html')}`
-        // })),
-
-        ...pages.map(page => new htmlWebpackPlugin({
-            template: path.resolve(__dirname, pages_dir + page),
-            filename: page.replace(/\.pug$/, '.html')
-        }))
+        new HtmlWebpackPlugin({
+            favicon: PATHS.src + '/images/favicon/favicon.png',
+        }),
+        ...htmlPlugins,
     ],
 
     module: {
@@ -65,7 +54,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: ['babel-loader']
+                use: ['babel-loader'],
             },
             {
                 test: /\.(scss|css)$/,
@@ -78,7 +67,7 @@ module.exports = {
             },
             {
                 test: /\.pug$/,
-                loader: 'pug-loader'
+                use: ['pug-loader'],
             },
             {
                 test: /\.(?:ico|gif|png|jpg|jpeg|svg)$/i,
@@ -96,5 +85,5 @@ module.exports = {
             modules: path.resolve(__dirname, '../src/blocks/modules'),
             components: path.resolve(__dirname, '../src/blocks/components')
         }
-    }
+    },
 }
