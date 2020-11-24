@@ -1,14 +1,12 @@
 const path = require('path')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const htmlPlugins = require('./utils/htmlPlugins')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 const PATHS = {
     src: path.resolve(__dirname, '../src'),
-    build: path.resolve(__dirname, '../dist'),
-    public: path.resolve(__dirname, '../public')
+    build: path.resolve(__dirname, '../dist')
 }
 
 module.exports = {
@@ -31,17 +29,22 @@ module.exports = {
         new CopyWebpackPlugin({
             patterns: [
                 {
-                    from: PATHS.public,
-                    to: '../dist/assets',
+                    from: `${PATHS.src}/images`,
+                    to: '../dist/assets/images',
+                    globOptions: {
+                        ignore: ['*.DS_Store'],
+                    },
+                    force: true
+                },
+                {
+                    from: `${PATHS.src}/fonts`,
+                    to: '../dist/assets/fonts',
                     globOptions: {
                         ignore: ['*.DS_Store'],
                     },
                     force: true
                 },
             ],
-        }),
-        new MiniCssExtractPlugin({
-            filename: '[name].css'
         }),
         new HtmlWebpackPlugin({
             favicon: PATHS.src + '/images/favicon/favicon.png',
@@ -70,8 +73,8 @@ module.exports = {
                 use: ['pug-loader'],
             },
             {
-                test: /\.(?:ico|gif|png|jpg|jpeg|svg)$/i,
-                type: 'asset/resource'
+                test: /\.(?:ico|gif|png|jpg|jpeg|)$/i,
+                type: 'asset/resource',
             },
             {
                 test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,

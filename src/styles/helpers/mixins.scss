@@ -7,3 +7,11 @@
     src: local($fname), url($furl) format("woff2");
   }
 }
+
+@mixin isFlex($align: center, $justify: center, $direction: row, $wrap: wrap) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+}

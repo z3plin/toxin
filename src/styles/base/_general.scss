@@ -1,3 +1,6 @@
+@import "../helpers/functions";
+@import "../helpers/variables";
+
 h1, h2, h3, h4, h5, h6, ul {
   margin: 0;
   padding: 0;
@@ -53,6 +56,35 @@ img {
 
 .container {
   max-width: $maxWidth;
+  padding-left: rem(30);
+  padding-right: rem(30);
+}
+
+.wrapper {
+  max-width: $break-xl;
+  margin: 0 auto;
+}
+
+.py-5 {
+  padding-top: rem(50);
+  padding-bottom: rem(50);
+}
+
+.py-4 {
+  padding-top: rem(40);
+  padding-bottom: rem(40);
+}
+.py-3 {
+  padding-top: rem(30);
+  padding-bottom: rem(30);
+}
+.py-2 {
+  padding-top: rem(20);
+  padding-bottom: rem(20);
+}
+.py-1 {
+  padding-top: rem(10);
+  padding-bottom: rem(10);
 }
 
 .visually-hidden:not(:focus):not(:active),
