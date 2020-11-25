@@ -1,0 +1,10 @@
+.logo {
+  display: block;
+  max-height: rem(48);
+
+  &__small {
+    img {
+      max-width: rem(48);
+    }
+  }
+}

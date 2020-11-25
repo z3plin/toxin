@@ -5,8 +5,11 @@ include ../helpers/mixins
         - const title = "Toxin UIkit";
 
     block content
-        include ../../blocks/modules/uikit/uikit
+        .container
+            include ../../blocks/modules/header/header
+            main.main.page__main
+                include ../../blocks/modules/uiColorsSizesSection/uiColorsSizesSection
 
     block scripts
-        //script(src="js/pageB.js")
+        script(src="js/pageB.js")
         script(src="js/vendor.js")

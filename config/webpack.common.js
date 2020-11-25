@@ -3,6 +3,7 @@ const htmlPlugins = require('./utils/htmlPlugins')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const PATHS = {
     src: path.resolve(__dirname, '../src'),
@@ -21,7 +22,8 @@ module.exports = {
     output: {
         path: PATHS.build,
         filename: '[name].js',
-        publicPath: '/'
+        publicPath: '/',
+        assetModuleFilename: 'assets/[name][ext]'
     },
 
     plugins: [
@@ -50,31 +52,40 @@ module.exports = {
             favicon: PATHS.src + '/images/favicon/favicon.png',
         }),
         ...htmlPlugins,
+        new MiniCssExtractPlugin({
+            filename: 'main.css'
+        })
     ],
 
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.js$/i,
                 exclude: /node_modules/,
                 use: ['babel-loader'],
             },
             {
                 test: /\.(s[ac]ss|css)$/i,
+                include: [
+                    path.resolve(__dirname, '../src/styles/main.scss')
+                ],
                 use: [
                     'style-loader',
                     {loader: 'css-loader', options: {sourceMap: true, importLoaders: 2}},
                     {
-                        loader: 'postcss-loader', 
+                        loader: 'postcss-loader',
                         options: {
                             sourceMap: true,
+                            postcssOptions: {
+                                config: path.resolve(__dirname, './utils/postcss.config.js'),
+                            },
                         }
                     },
                     {loader: 'sass-loader', options: {sourceMap: true}},
                 ],
             },
             {
-                test: /\.pug$/,
+                test: /\.pug$/i,
                 use: ['pug-loader'],
             },
             {
@@ -83,7 +94,7 @@ module.exports = {
             },
             {
                 test: /\.(woff(2)?|eot|ttf|otf|svg|)$/i,
-                type: 'asset/inline'
+                type: 'asset/inline',
             }
         ],
     },
