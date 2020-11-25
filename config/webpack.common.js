@@ -60,11 +60,16 @@ module.exports = {
                 use: ['babel-loader'],
             },
             {
-                test: /\.(scss|css)$/,
+                test: /\.(s[ac]ss|css)$/i,
                 use: [
                     'style-loader',
-                    {loader: 'css-loader', options: {sourceMap: true, importLoaders: 1}},
-                    {loader: 'postcss-loader', options: {sourceMap: true}},
+                    {loader: 'css-loader', options: {sourceMap: true, importLoaders: 2}},
+                    {
+                        loader: 'postcss-loader', 
+                        options: {
+                            sourceMap: true,
+                        }
+                    },
                     {loader: 'sass-loader', options: {sourceMap: true}},
                 ],
             },
@@ -77,7 +82,7 @@ module.exports = {
                 type: 'asset/resource',
             },
             {
-                test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+                test: /\.(woff(2)?|eot|ttf|otf|svg|)$/i,
                 type: 'asset/inline'
             }
         ],

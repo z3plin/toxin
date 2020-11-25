@@ -2,11 +2,11 @@ extends ../layouts/default
 include ../helpers/mixins
 
     block variables
-         - const title = "Toxin"
+         - const title = 'Toxin'
 
     block content
         h1 Let's go
-        img(src='../../../images/Group.png' alt='logo')
+        img(src=require("../../images/logo-small.svg") alt='logo')
 
     block scripts
         script(src="js/vendor.js")

@@ -17,19 +17,19 @@ module.exports = function getFilePath(startPath, filter) {
 
         let files = fs.readdirSync(startPath)
 
-        let filename;
+        let filename
 
         for (let i = 0; i < files.length; i++) {
             if (files[i] !== 'base') {
-                filename = path.join(startPath, files[i]);
-                let stat = fs.lstatSync(filename); //получить информацию о файле
+                filename = path.join(startPath, files[i])
+                let stat = fs.lstatSync(filename)
 
                 if (stat.isDirectory()) {
-                    getFilePath(filename, ext);
+                    getFilePath(filename, ext)
                 } else {
-                    let extname = path.extname(filename);
+                    let extname = path.extname(filename)
                     if (extname === filter) {
-                        pathsArr.push(filename);
+                        pathsArr.push(filename)
                     }
                 }
             }
