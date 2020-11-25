@@ -1,2 +1,15 @@
+include ../../../views/helpers/mixins
+
+- var colorsObject = [ {color: "Dark Shade 100%", hex: "#1F2041"}, {color: "Dark Shade 75%", hex: "#1F2041"}, {color: "Dark Shade 50%", hex: "#1F2041"}, {color: "Dark Shade 25%", hex: "#1F2041"}, {color: "Dark Shade 5%", hex: "#1F2041"}, {color: "Purple", hex: "#BC9CFF"}, {color: "Greem", hex: "#6FCF97"}]
+
 section.ui-colors-sizes
-    +list('colors', 7)
+    .container
+        .row
+            .column
+                +colorsList('ui-colors', 'colorsObject')
+                ul.ui-colors__list
+                    li.ui-colors__item
+                        .ui-colors__color-square.rounded
+                        .ui-colors__text
+                            h2.title Dark Shade 100%
+                            p.text #F12041

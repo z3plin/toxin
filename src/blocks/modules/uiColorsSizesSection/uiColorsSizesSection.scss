@@ -1,0 +1,10 @@
+.ui-colors__item {
+  @include isFlex();
+}
+
+.ui-colors__color-square {
+  width: rem(50);
+  height: rem(50);
+  display: block;
+  background-color: $darkShade-100;
+}

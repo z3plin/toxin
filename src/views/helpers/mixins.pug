@@ -5,8 +5,16 @@ mixin navigation (className, items, activeItem)
                 li(class=""+className+"__item" + ( (ndx == activeItem) ? ' '+className+'__item_active' : '' ))
                     a(href="#" class=""+className+"__link")= nav
 
-mixin list(className, count)
-    ul(class = "" + className + '__list')
-        each val in count
+mixin list(className, items)
+    ul(class= "" + className + "__list")
+        each item in items
             li(class= "" + className + "__item")
-                p= val
+
+mixin colorsList(className, options)
+    ul(class= "" + className + "__list")
+        each color, hex in options
+            li(class= "" + className + "__item")
+                div(class= "" + className + "__color-square" + " " + "rounded")
+                div(class= "" + className + "__info")
+                    h2(class= "title")= options.color
+                    span(class= "text")= options.hex
