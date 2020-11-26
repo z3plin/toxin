@@ -1,8 +1,3 @@
-h1, h2, h3, h4, h5, h6, ul {
-  margin: 0;
-  padding: 0;
-}
-
 *,
 *::before,
 *::after {
@@ -24,6 +19,30 @@ body {
   color: $darkShade-75;
   background-color: $white;
   overflow-x: hidden;
+}
+
+main {
+  max-width: $maxWidth;
+  margin: 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6, ul {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: $size-h1;
+}
+h2 {
+  font-size: $size-h2;
+}
+h3 {
+  font-size: $size-h3;
+}
+
+p {
+  font-size: $size-text;
 }
 
 a {
@@ -69,16 +88,68 @@ img {
   }
 }
 
+.wrapper {
+  max-width: rem(1140);
+  margin: 0 auto;
+}
+
 .row {
   @include isFlex(stretch, stretch);
-  margin-right: rem(-15);
-  margin-left: rem(-15);
 }
 
 .column {
   max-width: 100%;
   flex-grow: 1;
   flex-basis: 0;
+}
+
+.column-1 {
+  min-width: calc(100% / 12 * 1);
+  flex: 0 0 calc(100% / 12 * 1);
+}
+.column-2 {
+  min-width: calc(100% / 12 * 2);
+  flex: 0 0 calc(100% / 12 * 2);
+}
+.column-3 {
+  min-width: calc(100% / 12 * 3);
+  flex: 0 0 calc(100% / 12 * 3);
+}
+.column-4 {
+  min-width: calc(100% / 12 * 4);
+  flex: 0 0 calc(100% / 12 * 4);
+}
+.column-5 {
+  min-width: calc(100% / 12 * 5);
+  flex: 0 0 calc(100% / 12 * 5);
+}
+.column-6 {
+  min-width: calc(100% / 12 * 6);
+  flex: 0 0 calc(100% / 12 * 6);
+}
+.column-7 {
+  min-width: calc(100% / 12 * 7);
+  flex: 0 0 calc(100% / 12 * 7);
+}
+.column-8 {
+  min-width: calc(100% / 12 * 8);
+  flex: 0 0 calc(100% / 12 * 8);
+}
+.column-9 {
+  min-width: calc(100% / 12 * 9);
+  flex: 0 0 calc(100% / 12 * 9);
+}
+.column-10 {
+  min-width: calc(100% / 12 * 10);
+  flex: 0 0 calc(100% / 12 * 10);
+}
+.column-11 {
+  min-width: calc(100% / 12 * 11);
+  flex: 0 0 calc(100% / 12 * 11);
+}
+.column-12 {
+  min-width: calc(100% / 12 * 12);
+  flex: 0 0 calc(100% / 12 * 12);
 }
 
 .py-5 {
@@ -115,6 +186,50 @@ img {
 .text {
   margin: 0;
   padding: 0;
+}
+
+.shade-100 {
+  background-color: $darkShade-100;
+}
+.shade-75 {
+  background-color: $darkShade-75;
+}
+.shade-50 {
+  background-color: $darkShade-50;
+}
+.shade-25 {
+  background-color: $darkShade-25;
+}
+.shade-5 {
+  background-color: $darkShade-5;
+}
+.purple {
+  background-color: $purple;
+}
+.green {
+  background-color: $green;
+}
+
+.text-shade-100 {
+  color: $darkShade-100;
+}
+.text-shade-75 {
+  color: $darkShade-75;
+}
+.text-shade-50 {
+  color: $darkShade-50;
+}
+.text-shade-25 {
+  color: $darkShade-25;
+}
+.text-shade-5 {
+  color: $darkShade-5;
+}
+.text-purple {
+  color: $purple;
+}
+.text-green {
+  color: $green;
 }
 
 .visually-hidden:not(:focus):not(:active),

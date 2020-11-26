@@ -1,10 +1,99 @@
-.ui-colors__item {
-  @include isFlex();
+.ui-colors {
+
+  &__wrapper {
+    max-width: rem(1140);
+    margin: 0 auto;
+    margin-top: rem(50);
+
+    @media screen and (max-width: $break-sm){
+      margin-top: rem(30);
+    }
+  }
+
+  &-sizes {
+    width: 100%;
+    height: 100vh;
+    max-width: $maxWidth;
+    max-height: rem(900);
+  }
+
+  &__list {
+    @include isFlex(stretch, stretch, column, nowrap);
+    align-content: center;
+    width: calc(100% / 12 * 6);
+
+    @media screen and (max-width: $break-md) {
+      width: calc(100% / 12 * 12);
+      margin-bottom: rem(50);
+    }
+  }
+
+  &__item {
+    @include isFlex($justify: stretch);
+    margin-bottom: rem(20);
+
+    @media screen and (max-width: $break-md) {
+      width: calc(100% / 12 * 6);
+      margin-right: auto;
+      margin-left: auto;
+    }
+    @media screen and (max-width: $break-sm) {
+      width: calc(100% / 12 * 10);
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+
+  &__color {
+    &-square {
+      width: rem(70);
+      height: rem(70);
+      display: block;
+      margin-right: rem(40);
+
+      @media screen and (max-width: $break-md) {
+        width: rem(60);
+        height: rem(60);
+        margin-right: rem(30);
+      }
+      @media screen and (max-width: $break-sm) {
+        width: rem(45);
+        height: rem(45);
+        margin-right: rem(10);
+      }
+    }
+  }
 }
 
-.ui-colors__color-square {
-  width: rem(50);
-  height: rem(50);
-  display: block;
-  background-color: $darkShade-100;
+.ui-sizes {
+
+  &__list {
+    @include isFlex(flex-start, stretch, column);
+    width: calc(100% / 12 * 6);
+    align-content: center;
+
+    @media screen and (max-width: $break-md) {
+      width: calc(100% / 12 * 10);
+      margin: 0 auto;
+    }
+  }
+
+  &__item {
+    @include isFlex(stretch, stretch, row, nowrap);
+    width: 100%;
+    margin-bottom: rem(50);
+  }
+
+  &__size {
+    width: calc(100% / 12 * 1);
+    margin-right: rem(30);
+
+    @media screen and (max-width: $break-md) {
+      margin-right: rem(20);
+    }
+  }
+
+  &__info {
+    width: calc(100% / 12 * 10);
+  }
 }

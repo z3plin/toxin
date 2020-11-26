@@ -1,15 +1,31 @@
 include ../../../views/helpers/mixins
 
-- var colorsObject = [ {color: "Dark Shade 100%", hex: "#1F2041"}, {color: "Dark Shade 75%", hex: "#1F2041"}, {color: "Dark Shade 50%", hex: "#1F2041"}, {color: "Dark Shade 25%", hex: "#1F2041"}, {color: "Dark Shade 5%", hex: "#1F2041"}, {color: "Purple", hex: "#BC9CFF"}, {color: "Greem", hex: "#6FCF97"}]
+- var colors = [ {color: "Dark Shade 100%", hex: "#1F2041", class: "shade-100"}, {color: "Dark Shade 75%", hex: "#1F2041", class: "shade-75"}, {color: "Dark Shade 50%", hex: "#1F2041", class: "shade-50"}, {color: "Dark Shade 25%", hex: "#1F2041", class: "shade-25"}, {color: "Dark Shade 5%", hex: "#1F2041", class: "shade-5"}, {color: "Purple", hex: "#BC9CFF", class: "purple"}, {color: "Green", hex: "#6FCF97", class: "green"}]
+- var sizes = [ {tag: "H1", size: "H1", body: "This one is the sub-section or widget title" }, {tag: "H2", size: "H2", body: "Next one is the item title inside widgets"}, {tag: "H3", size: "H3", body: "This is a label or CTA text"}, {tag: "Body", size: "Body", body: "This is the body text which is used for most of the design, like paragraphs, lists, etc."} ]
 
 section.ui-colors-sizes
     .container
-        .row
-            .column
-                +colorsList('ui-colors', 'colorsObject')
-                ul.ui-colors__list
-                    li.ui-colors__item
-                        .ui-colors__color-square.rounded
-                        .ui-colors__text
-                            h2.title Dark Shade 100%
-                            p.text #F12041
+        .ui-colors__wrapper
+            .row
+                +colorsList('ui-colors', colors)
+                ul(class= "ui-sizes__list")
+                    li(class="ui-sizes__item")
+                        .ui-sizes__size
+                            h1.text-shade-25 H1
+                        .ui-sizes__info
+                            h1.text-shade-100 This one is the sub-section or widget title
+                    li(class="ui-sizes__item")
+                        .ui-sizes__size
+                            h2.text-shade-25 H2
+                        .ui-sizes__info
+                            h2.text-shade-100 Next one is the item title inside widgets
+                    li(class="ui-sizes__item")
+                        .ui-sizes__size
+                            h3.text-shade-25 H3
+                        .ui-sizes__info
+                            h3.text-shade-100 This is a label or CTA text
+                    li(class="ui-sizes__item")
+                        .ui-sizes__size
+                            p.text-shade-25 Body
+                        .ui-sizes__info
+                            p.text-shade-75 This is the body text which is used for most of the design, like paragraphs, lists, etc.

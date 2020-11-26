@@ -12,9 +12,24 @@ mixin list(className, items)
 
 mixin colorsList(className, options)
     ul(class= "" + className + "__list")
-        each color, hex in options
+        each option in options
             li(class= "" + className + "__item")
-                div(class= "" + className + "__color-square" + " " + "rounded")
+                div(class= "" + className + "__color-square" + " " + option.class + " " + "rounded")
                 div(class= "" + className + "__info")
-                    h2(class= "title")= options.color
-                    span(class= "text")= options.hex
+                    h2(class= "title")= option.color
+                    span(class= "text")= option.hex
+
+mixin textSizesList(className, options)
+    ul(class= "" + className + "__list")
+        each option in options
+            li(class= "" + className + "__item")
+                div(class= "" + className + "__sizes")
+                    if option.tag="H1"
+                        h1()=option.size
+                    else if option.tag="H2"
+                        h2()=option.size
+                    else if option.tag= "H3"
+                        h3()=option.size
+                    else
+                        p()=option.size
+                div(class= "" + className + "__info")
