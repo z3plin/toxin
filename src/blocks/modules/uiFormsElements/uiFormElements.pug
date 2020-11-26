@@ -1,3 +1,18 @@
 section.ui-form-elements
   .container
     .ui-form-elements__wrapper
+      .ui-form-elements__block
+        .ui-form__element
+          .element__title
+            h3 Text Field
+          .element__state
+            p Default
+          .element
+            include ../../components/textField/textField
+        .ui-form__element
+          .element__title
+            h3 Text Field
+          .element__state
+            p Hover/Focus
+          .element
+            input(class="text-field text-field--active" placeholder="This is pretty awesome" required)

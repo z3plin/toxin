@@ -12,9 +12,10 @@
 
   &-sizes {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     max-width: $maxWidth;
     max-height: rem(900);
+    margin-bottom: rem(50);
   }
 
   &__list {

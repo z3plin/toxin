@@ -32,16 +32,23 @@ h1, h2, h3, h4, h5, h6, ul {
 }
 
 h1 {
+  font-family: montserrat-bold, sans-serif;
   font-size: $size-h1;
+  font-weight: 700;
 }
 h2 {
+  font-family: 'montserrat-bold', sans-serif;
   font-size: $size-h2;
+  font-weight: 700;
 }
 h3 {
+  font-family: 'montserrat-bold', sans-serif;
   font-size: $size-h3;
+  font-weight: 700;
 }
 
 p {
+  margin: 0;
   font-size: $size-text;
 }
 

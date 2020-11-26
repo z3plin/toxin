@@ -1,6 +1,27 @@
 .ui-form-elements {
+  margin-bottom: rem(50);
+
   &__wrapper {
     max-width: rem(1140);
     margin: 0 auto;
+  }
+
+  &__block {
+    width: calc(100% / 12 * 3);
+  }
+}
+
+.ui-form__element {
+  @include isFlex($justify: space-between);
+  margin-bottom: rem(20);
+
+  .element__title,
+  .element__state {
+    margin-bottom: rem(5);
+    text-transform: uppercase;
+  }
+
+  .element {
+    width: 100%;
   }
 }

@@ -1,0 +1,38 @@
+.text-field {
+  width: 100%;
+  max-width: rem(320);
+  display: block;
+  padding: rem(15) rem(15);
+  font-family: montserrat, sans-serif;
+  font-size: $size-text;
+  color: $darkShade-25;
+  border: 1px solid $darkShade-25;
+  border-radius: $radius;
+  transition: $transition;
+  outline: none;
+
+  &::placeholder {
+    color: $darkShade-25;
+    text-overflow: ellipsis;
+    transition: $transition;
+  }
+
+  &:hover,
+  &:focus {
+    color: $darkShade-75;
+    border: 1px solid $darkShade-50;
+
+    &::placeholder {
+      opacity: 0;
+    }
+  }
+}
+
+// ui special
+.text-field--active {
+  border: 1px solid $darkShade-50;
+
+  &::placeholder {
+    color: $darkShade-75;
+  }
+}
